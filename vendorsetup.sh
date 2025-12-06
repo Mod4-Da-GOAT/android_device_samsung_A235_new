@@ -5,6 +5,36 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo omni_a23-user
-add_lunch_combo omni_a23-userdebug
-add_lunch_combo omni_a23-eng
+# Allow missing dependencies to prevent build halts
+export ALLOW_MISSING_DEPENDENCIES=true
+
+# OFRP Flags
+export OF_MAINTAINER="Mod4DaGOAT"
+export FOX_USE_TAR_BINARY=1
+export FOX_USE_LZ4_BINARY=1
+export FOX_USE_ZSTD_BINARY=1
+export FOX_USE_BUSYBOX_BINARY=1
+export FOX_USE_NANO_EDITOR=1
+export OF_CLOCK_POS=1
+export OF_ADVANCED_SECURITY=1
+export OF_USE_LOCKSCREEN_BUTTON=1
+export OF_FORCE_PREBUILT_KERNEL=1
+export OF_ENABLE_LPTOOLS=1
+export OF_ENABLE_ALL_PARTITION_TOOLS=1
+export OF_STATUS_INDENT_RIGHT=48
+export OF_STATUS_INDENT_LEFT=48
+export OF_OPTIONS_LIST_NUM=8
+export FOX_RECOVERY_SYSTEM_PARTITION="/dev/block/mapper/system"
+export FOX_RECOVERY_VENDOR_PARTITION="/dev/block/mapper/vendor"
+export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/by-name/recovery"
+export OF_SCREEN_H=2400
+export OF_FL_PATH1="/system/flashlight"
+export OF_FL_PATH2=""
+export OF_FLASHLIGHT_ENABLE=1
+export OF_SPLASH_MAX_SIZE=104
+export OF_FLASHLIGHT_ENABLE=1
+export FOX_DELETE_MAGISK_ADDON=1
+export FOX_ALLOW_EARLY_SETTINGS_LOAD=1
+export FOX_USE_UPDATED_MAGISKBOOT=1
+export FOX_ENABLE_KERNELSU_SUPPORT=1
+export FOX_ENABLE_KERNELSU_NEXT_SUPPORT=1
