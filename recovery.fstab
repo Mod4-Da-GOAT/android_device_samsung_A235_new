@@ -1,34 +1,28 @@
-# Android fstab file.
-# The filesystem that contains the filesystem checker binary (typically /system)
-# cannot specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK.
-
-# <src>                                            <mnt_point>      <type>  <mnt_flags and options>                                                                 <fs_mgr_flags>
-
-# Logical partitions
-system               /system             f2fs    ro,wait,logical,first_stage_mount                                  flags=display=system;logical
-system               /system             ext4    ro,wait,logical,first_stage_mount                                  flags=display=system;logical
-system               /system             erofs   ro,wait,logical,first_stage_mount                                  flags=display=system;logical
-system_ext           /system_ext         f2fs    ro,wait,logical,first_stage_mount                                  flags=display=system_ext;logical
-product              /product            f2fs    ro,wait,logical,first_stage_mount                                  flags=display=product;logical
-vendor               /vendor             f2fs    ro,wait,logical,first_stage_mount                                  flags=display=vendor;logical
-odm                  /odm                f2fs    ro,wait,logical,first_stage_mount                                  flags=display=odm;logical
-vendor_dlkm          /vendor_dlkm        f2fs    ro,wait,logical,first_stage_mount                                  flags=display=vendor_dlkm;logical
-
-# Physical partitions
-/dev/block/by-name/metadata              /metadata          ext4    noatime,nosuid,nodev,noauto_da_alloc,discard,journal_checksum,data=ordered,errors=panic,sync     wait,formattable,first_stage_mount,check,flags=display=metadata
-/dev/block/bootdevice/by-name/userdata   /data              f2fs    noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt     latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,quota,reservedsize=128M,sysfs_path=/sys/devices/platform/soc/1d84000.ufshc,checkpoint=fs,keydirectory=/metadata/vold/metadata_encryption,flags=display=data
-
-/cache              /dev/block/bootdevice/by-name/cache       ext4    defaults                                              flags=display=cache
-/sdcard             /dev/block/mmcblk1p1                      vfat    defaults                                              flags=display=sdcard
-/boot               /dev/block/bootdevice/by-name/boot        emmc    defaults                                              flags=display=boot
-/recovery           /dev/block/bootdevice/by-name/recovery    emmc    defaults                                              flags=display=recovery
-/misc               /dev/block/bootdevice/by-name/misc        emmc    defaults,first_stage_mount                            flags=display=misc
-/efs                /dev/block/bootdevice/by-name/sec_efs     ext4    defaults                                              flags=display=efs
-/sec_efs            /dev/block/bootdevice/by-name/sec_efs     ext4    defaults                                              flags=display=sec_efs
-/modem              /dev/block/bootdevice/by-name/apnhlos     emmc    defaults                                              flags=display=modem
-/dsp                /dev/block/bootdevice/by-name/dsp         emmc    defaults                                              flags=display=dsp
-/dtbo               /dev/block/bootdevice/by-name/dtbo        emmc    defaults                                              flags=display=dtbo
-/mdm                /dev/block/bootdevice/by-name/modem       emmc    defaults                                              flags=display=mdm
+/system            f2fs      system                                          flags=display=system;logical
+/system            ext4      system                                          flags=display=system;logical
+/system            erofs     system                                          flags=display=system;logical
+/system_ext        f2fs      system_ext                                      flags=display=system_ext;logical
+/vendor            f2fs      vendor                                          flags=display=vendor;logical
+/product           f2fs      product                                         flags=display=product;logical
+/cache             ext4      /dev/block/bootdevice/by-name/cache             flags=display=cache
+/metadata          ext4      /dev/block/by-name/metadata                     flags=display=metadata
+/sdcard            vfat      /dev/block/mmcblk1p1                            flags=display=sdcard
+/boot              emmc      /dev/block/bootdevice/by-name/boot              flags=display=boot
+/recovery          emmc      /dev/block/bootdevice/by-name/recovery          flags=display=recovery
+/misc              emmc      /dev/block/bootdevice/by-name/misc              flags=display=misc
+/data              f2fs      /dev/block/bootdevice/by-name/userdata          flags=display=data
+/efs               ext4      /dev/block/bootdevice/by-name/sec_efs           flags=display=efs
+/sec_efs           ext4      /dev/block/bootdevice/by-name/sec_efs           flags=display=sec_efs
+/modem             emmc      /dev/block/bootdevice/by-name/apnhlos           flags=display=modem
+/dsp               emmc      /dev/block/bootdevice/by-name/dsp               flags=display=dsp
+/dtbo              emmc      /dev/block/bootdevice/by-name/dtbo              flags=display=dtbo
+/mdm               emmc      /dev/block/bootdevice/by-name/modem             flags=display=mdm
+/optics            ext4      /dev/block/bootdevice/by-name/optics            flags=display=optics
+/prism             ext4      /dev/block/bootdevice/by-name/prism             flags=display=prism
+/vbmeta_system     emmc      /dev/block/bootdevice/by-name/vbmeta_system     flags=display=vbmeta_system
+/odm               f2fs      odm                                             flags=display=odm;logical
+/vendor_dlkm       f2fs      vendor_dlkm                                     flags=display=vendor_dlkm;logical
+/imagefv           emmc      /dev/block/bootdevice/by-name/imagefv           flags=display=imagefv
 /optics             /dev/block/bootdevice/by-name/optics      ext4    defaults                                              flags=display=optics
 /prism              /dev/block/bootdevice/by-name/prism       ext4    defaults                                              flags=display=prism
 /vbmeta_system      /dev/block/bootdevice/by-name/vbmeta_system  emmc  defaults                                             flags=display=vbmeta_system
